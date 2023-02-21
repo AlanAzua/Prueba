@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Users;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
@@ -17,7 +17,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios=User::Paginate(5);
+        $usuarios=Users::Paginate(5);
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -26,8 +26,11 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create( Request $request)
+    {   
+        $user=$request->all();
+        $user->save();
+
         return view('usuarios.Create');
     }
 
@@ -49,7 +52,7 @@ class UsuarioController extends Controller
         ]);
         $input=$request->all();
         $input['password']=Hash::make($input['password']);
-        $user=User::create($input);
+        $user=Users::Create($input);
         return redirect()->route('usuarios.index');
 
     }
@@ -74,7 +77,7 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        $user=User::find($id);
+        $user=Users::find($id);
         
         return view('usuarios.Editar', compact('user'));
     }
@@ -101,10 +104,9 @@ class UsuarioController extends Controller
             $input['password']=Hash::make($input['password']);
             }else{
                 $input= Arr::except($input, array('password'));
-            $user=User::find($id);
-            $user->update($input);
-            DB::table('user')->where('id',$id)->delete();
             }
+            $user=Users::find($id);
+            $user->save($input);
             return redirect()->route('usuarios.index');
             
     }
@@ -117,7 +119,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        $user=User::find($id)->delete();
+        $user=Users::find($id)->delete();
         return redirect()->route('usuarios.index');
 
     }

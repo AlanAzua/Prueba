@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::get('orders', [OrdersController::class, 'index']);
 Route::get('orders/list', [OrdersController::class, 'getOrders'])->name('orders.list');
 Route::resource('usuarios', UsuarioController::Class);
+Route::post('/crearUsuarios', 'UsuarioController@create')->name('usuarios.crear');

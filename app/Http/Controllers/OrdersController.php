@@ -19,11 +19,11 @@ class OrdersController extends Controller
     }
 
     public function getOrders(Request $request)
-    {
+    {    
 
         // dd("asdasdsd");
         // if ($request->ajax()) {
-            $data = Orders::latest()->get();
+            $data = Orders::select('*')->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -32,7 +32,6 @@ class OrdersController extends Controller
                 })
                 ->rawColumns(['action'])
                 ->make(true);
-                dd($data);
         // }
     }
 

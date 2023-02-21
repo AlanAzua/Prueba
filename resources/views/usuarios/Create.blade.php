@@ -20,7 +20,7 @@
             <h3 style="color: #6777ef"> Crear Usuarios</h3>
             <div class="col-ms-6">
                 <div class="card">
-                {!! Form::open(array('route'=>'usuarios.store', 'method'=>'POST')) !!}
+                {!! Form::open(array('route'=>'usuarios.create', 'method'=>'POST')) !!}
                     <div Class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
