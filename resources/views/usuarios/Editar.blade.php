@@ -19,6 +19,17 @@
             <h3 style="color: #6777ef"> Editar Usuarios</h3>
             <div class="col-ms-6">
                 <div class="card">
+                @if ($errors->any())
+                    <div class="alert alert-dark  alert-dismissible fade show" role="alert">
+                        <strong> ¡Revise los campos!</strong>
+                        @foreach ($errors->all() as $error)
+                            <span class="badge badge-danger">{{$error}}</span>   
+                        @endforeach
+                        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                     {{!!Form::Model($user, ['method'=>'PUT', 'route'=>['usuarios.update', $user->id]])!!}}
                     <div Class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">

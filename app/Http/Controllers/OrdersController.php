@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DataTables;
-use App\Models\Order;
+use App\Models\Orders;
 
 class OrdersController extends Controller
 {
@@ -20,8 +20,10 @@ class OrdersController extends Controller
 
     public function getOrders(Request $request)
     {
-        if ($request->ajax()) {
-            $data = Order::select('*')->get();
+
+        // dd("asdasdsd");
+        // if ($request->ajax()) {
+            $data = Orders::latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -30,7 +32,8 @@ class OrdersController extends Controller
                 })
                 ->rawColumns(['action'])
                 ->make(true);
-        }
+                dd($data);
+        // }
     }
 
 }

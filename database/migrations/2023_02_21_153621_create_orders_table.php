@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::select('orders', function (Blueprint $table) {
             $table->order_id();
             $table->user_id();
             $table->order_total();
-            $table->timestamps();
+            $table->created_at();
         });
     }
 

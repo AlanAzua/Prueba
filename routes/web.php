@@ -19,6 +19,6 @@ use App\Models\User;
 Route::get('/', function () {
     return view('welcome');
 });
-//Route::get('orders', [OrdersController::class, 'index'])->name('orders.list');
-Route::get('orders', [OrdersController::class, 'getOrders'])->name('orders.tabla');
+Route::get('orders', [OrdersController::class, 'index']);
+Route::get('orders/list', [OrdersController::class, 'getOrders'])->name('orders.list');
 Route::resource('usuarios', UsuarioController::Class);
