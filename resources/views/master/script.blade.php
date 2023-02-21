@@ -1,0 +1,1 @@
+<script>https://cdnjs.cloudflare.com/ajax/libs/gentelella/1.4.0/js/custom.min.js</script>
